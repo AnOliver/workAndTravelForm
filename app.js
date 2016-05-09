@@ -23,10 +23,10 @@ function handleRequest(request, response){
 	else if (request.method == 'POST') {
         var body = "";
         request.on('data', function (data) {
-        	body += data;
+            body += data;
         });
         request.on('end', function () {
-		saveForm(body);
+			saveForm(body)
         });	
 		
 	}
