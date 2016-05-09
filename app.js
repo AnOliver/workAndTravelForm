@@ -26,7 +26,7 @@ function handleRequest(request, response){
         	body += data;
         });
         request.on('end', function () {
-		saveForm(body)
+		saveForm(body);
         });	
 		
 	}
