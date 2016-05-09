@@ -1,9 +1,0 @@
-CREATE TABLE customerTable
-	(`firstName` varchar(35), `lastName` varchar(35),`age` int, `email` varchar(254), `country` varchar(25), `phone` varchar(17), `date` date)
-;
-	
-INSERT INTO customerTable
-	(`firstName`, `lastName`,`age`,`country`,`email`,`phone`,`date`)
-VALUES
-	('Oliver', 'Young',27,'New Zealand','oliverjohnyoung@gmail.com','02108218106','2016-05-08')
-;
