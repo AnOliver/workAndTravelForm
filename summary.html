@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body> 
+<span id='summaryTableRows'></span>
+<script>
+tableData = ""
+function loadTable() {
+  //Retrieves table string from server
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      displayTable(xhttp.responseText)
+    }
+	
+  };
+  xhttp.open("GET", "http://localhost:8080/", true);
+  xhttp.send();
+}
+loadTable()
+
+function displayTable(tableData){
+	//Converts string into an object to loop through
+	tableData = JSON.parse(tableData)
+	content = "<table class='table'>"
+	//header row
+	content += "<tr><td><strong>ID</strong></td><td><strong>First Name</strong></td><td><strong>Last Name</strong></td><td><strong>Age</strong></td><td><strong>Email</strong></td><td><strong>Country</strong></td><td><strong>Phone</strong></td><td><strong>Date</strong></td></tr>"
+	//loads table data into rows
+	for (i = 0; i < tableData.length; i++) { 
+		content += "<tr><td>"+tableData[i].id+"</td><td>"+tableData[i].firstName+"</td><td>"+tableData[i].lastName+"</td><td>"+tableData[i].age+"</td><td>"+tableData[i].email+"</td><td>"+tableData[i].country+"</td><td>"+tableData[i].phone+"</td><td>"+tableData[i].creationDate.split("T")[0]+"</td></tr>"
+	}
+	content += "</table>"
+	//displays table
+	document.getElementById('summaryTableRows').innerHTML = content
+}
+
+</script>
+</body>
+</html>
