@@ -23,12 +23,10 @@ function handleRequest(request, response){
 	else if (request.method == 'POST') {
         var body = "";
         request.on('data', function (data) {
-            body += data;
-            console.log("Partial body: " + body);
+        	body += data;
         });
         request.on('end', function () {
-            console.log("Body: " + body);
-			saveForm(body)
+		saveForm(body)
         });	
 		
 	}
